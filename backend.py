@@ -6,7 +6,6 @@ from tkinter import messagebox
 
 def LiBBranch():
 
-
     def addDetail():
 
         mydb = pymysql.connect(host="localhost",
@@ -109,7 +108,6 @@ def insertArtist(name,number):
     mydb.commit()
     mydb.close()
 
-
 def viewArtistData():
     mydb = pymysql.connect(host="localhost",
                            user="root", password="shalatan", database="music")
@@ -183,7 +181,7 @@ def insert(Branch_id,id, title, author, year, publisher,quantity):
     mydb.commit()
     mydb.close()
 
-
+# Done
 def viewAllAlbums():
     mydb = pymysql.connect(host="localhost",
                            user="root", password="shalatan", database="music")
@@ -193,7 +191,6 @@ def viewAllAlbums():
     row = cur.fetchall()
     mydb.close()
     return row
-
 
 def search(id="", title="", author="", year="", publisher=""):
     mydb = pymysql.connect(host="localhost",
@@ -207,24 +204,22 @@ def search(id="", title="", author="", year="", publisher=""):
     mydb.close()
     return row
 
-
+# Done
 def delete(id):
     mydb = pymysql.connect(host="localhost",
                            user="root", password="shalatan", database="music")
     cur = mydb.cursor()
-    deleteBook = ("delete from Book where book_id = '"+str(id)+"'")
-    cur.execute(deleteBook)
+    deleteAlbumData = ("delete from album where ALBUM_ID = '"+str(id)+"'")
+    cur.execute(deleteAlbumData)
     mydb.commit()
     mydb.close()
 
-
-def update(branhid, id, title, author, year, publisher, quantity):
+def update(id, title, author, year, quantity):
     mydb = pymysql.connect(host="localhost",
                            user="root", password="shalatan", database="music")
     cur = mydb.cursor()
-    updateBook = ("update Book set TITLE = '"+title+"', AUTHOR = '" +
-                  author+"' , PUBLISHER = '"+publisher+"' , year_of_publish = '"+
-                  year+"' where book_id = '"+str(id)+"'")
+    updateBook = ("update album set ALBUM_NAME = '"+title+"', ARTIST_NAME = '" +
+                  author+"', RELEASE_DATE = '"+year+"' where ALBUM_ID = '"+str(id)+"'")
     cur.execute(updateBook)
     mydb.commit()
     mydb.close()
@@ -252,7 +247,6 @@ def searchCards(cardNo):
     mydb.close()
     return row
 
-
 def insertIssue(dateo,ddate,bookId,branchId,cardNumber):
 
     mydb = pymysql.connect(host="localhost",
@@ -264,7 +258,6 @@ def insertIssue(dateo,ddate,bookId,branchId,cardNumber):
     mydb.commit()
     mydb.close()
 
-
 def updateIssueBook(bId,braId, quantity):
     mydb = pymysql.connect(host="localhost",
                            user="root", password="shalatan", database="music")
@@ -274,7 +267,6 @@ def updateIssueBook(bId,braId, quantity):
     cur.execute(updateBook)
     mydb.commit()
     mydb.close()
-
 
 def deleteIssueBook(BId,BraId,cardNumber):
     mydb = pymysql.connect(host="localhost",

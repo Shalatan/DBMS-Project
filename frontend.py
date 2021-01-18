@@ -57,9 +57,9 @@ def guiPy():
         e5.delete(0, END)
         e6.delete(0, END)
 
-    def deleteBook():
+    def deleteAlbum():
         backend.delete(sid[0])
-        viewBook()
+        viewAlbum()
         e1.delete(0, END)
         e2.delete(0, END)
         e3.delete(0, END)
@@ -67,11 +67,10 @@ def guiPy():
         e5.delete(0, END)
         e6.delete(0, END)
 
-
-    def updateBook():
-        backend.update(branchId_txt.get(), bookId_txt.get(), title_txt.get(), author_txt.get(),
-                       year_txt.get(), publisher_txt.get(), quantity_txt.get())
-        viewBook()
+    def updateAlbum():
+        backend.update(bookId_txt.get(), title_txt.get(), author_txt.get(),
+                       year_txt.get(), quantity_txt.get())
+        viewAlbum()
 
     "////////////////////////////////////////////////////////////////////////////////////"
     #----------------------------------BRANCH DETAIL---------------------------------
@@ -266,10 +265,10 @@ def guiPy():
     b3 = ttk.Button(window, text="Add Album", width=15, command=addBook)
     b3.grid(row=3, column=0)
     b4 = ttk.Button(window, text="Update Album",
-                    width=15, command=updateBook)
+                    width=15, command=updateAlbum)
     b4.grid(row=4, column=0)
     b5 = ttk.Button(window, text="Delete Album",
-                    width=15, command=deleteBook)
+                    width=15, command=deleteAlbum)
     b5.grid(row=5, column=0)
     b6 = ttk.Button(window, text="Close", width=15, command=window.destroy)
     b6.grid(row=6, column=0)

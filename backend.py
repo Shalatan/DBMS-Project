@@ -97,8 +97,9 @@ def connect():
     mydb.close()
 
 
-#--------------------------------------Publilsher Details--------------------------------------
+#--------------------------------------Artist Details--------------------------------------
 
+# Done
 def insertArtist(name,number):
     mydb = pymysql.connect(host="localhost",
                            user="root", password="shalatan", database="music")
@@ -108,6 +109,7 @@ def insertArtist(name,number):
     mydb.commit()
     mydb.close()
 
+# Done
 def viewArtistData():
     mydb = pymysql.connect(host="localhost",
                            user="root", password="shalatan", database="music")
@@ -118,6 +120,7 @@ def viewArtistData():
     mydb.close()
     return row
 
+# Done
 def deleteArtist(name):
     mydb = pymysql.connect(host="localhost",
                            user="root", password="shalatan", database="music")
@@ -127,8 +130,9 @@ def deleteArtist(name):
     mydb.commit()
     mydb.close()
 
-#--------------------------------------Branch Details--------------------------------------
+#--------------------------------------Customer Details--------------------------------------
 
+# Done
 def insertCustomer(id,name,address):
     mydb = pymysql.connect(host="localhost",
                            user="root", password="shalatan", database="music")
@@ -138,6 +142,7 @@ def insertCustomer(id,name,address):
     mydb.commit()
     mydb.close()
 
+# Done
 def viewCustomerData():
     mydb = pymysql.connect(host="localhost",
                            user="root", password="shalatan", database="music")
@@ -148,6 +153,7 @@ def viewCustomerData():
     mydb.close()
     return row
 
+# Done
 def deleteCustomerData(id):
     mydb = pymysql.connect(host="localhost",
                            user="root", password="shalatan", database="music")
@@ -192,20 +198,20 @@ def viewAllAlbums():
     mydb.close()
     return row
 
-def search(id="", title="", author="", year="", publisher=""):
+#Done
+def searchAlbumData(id="", title="", author="", year="", publisher=""):
     mydb = pymysql.connect(host="localhost",
                            user="root", password="shalatan", database="music")
     cur = mydb.cursor()
-    searchBook = ("select * from Book where book_id = '"+id+"' or title = '"+title +
-                  "' or author = '"+author+"' or publisher = '"+publisher+
-                  "' or year_of_publish = '"+year+"'")
+    searchBook = ("select * from album where ALBUM_ID = '"+id+"' or ALBUM_NAME = '"+title +
+                  "' or ARTIST_NAME = '"+author+"' or RELEASE_DATE = '"+year+"'")
     cur.execute(searchBook)
     row = cur.fetchall()
     mydb.close()
     return row
 
 # Done
-def delete(id):
+def deleteAlbumData(id):
     mydb = pymysql.connect(host="localhost",
                            user="root", password="shalatan", database="music")
     cur = mydb.cursor()
@@ -214,7 +220,8 @@ def delete(id):
     mydb.commit()
     mydb.close()
 
-def update(id, title, author, year, quantity):
+# Done
+def updateAlbumData(id, title, author, year, quantity):
     mydb = pymysql.connect(host="localhost",
                            user="root", password="shalatan", database="music")
     cur = mydb.cursor()

@@ -38,10 +38,10 @@ def guiPy():
             for row in backend.viewAllAlbums():
                 list1.insert(END, row)
 
-    def searchBook():
+    def searchAlbum():
         list1.delete(0, END)
-        for row in backend.search(bookId_txt.get(),
-         title_txt.get(), author_txt.get(), year_txt.get(), publisher_txt.get()):
+        for row in backend.searchAlbumData(bookId_txt.get(),
+         title_txt.get(), author_txt.get(), year_txt.get()):
             list1.insert(END, row)
 
     def addBook():
@@ -58,7 +58,7 @@ def guiPy():
         e6.delete(0, END)
 
     def deleteAlbum():
-        backend.delete(sid[0])
+        backend.deleteAlbumData(sid[0])
         viewAlbum()
         e1.delete(0, END)
         e2.delete(0, END)
@@ -68,7 +68,7 @@ def guiPy():
         e6.delete(0, END)
 
     def updateAlbum():
-        backend.update(bookId_txt.get(), title_txt.get(), author_txt.get(),
+        backend.updateAlbumData(bookId_txt.get(), title_txt.get(), author_txt.get(),
                        year_txt.get(), quantity_txt.get())
         viewAlbum()
 
@@ -218,17 +218,17 @@ def guiPy():
 
     # l0 = Label(window,text="Branch_id")
     # l0.grid(row=0,column=9)
-    l1 = Label(window, text="bookId")
+    l1 = Label(window, text="Album Id")
     l1.grid(row=1, column=9)
-    l2 = Label(window, text="Title")
+    l2 = Label(window, text="Album Name")
     l2.grid(row=2, column=9)
-    l3 = Label(window, text="Author")
+    l3 = Label(window, text="Artist")
     l3.grid(row=3, column=9)
     # l4 = Label(window, text="Publisher")
     # l4.grid(row=4, column=9)
-    l5 = Label(window, text="Year")
+    l5 = Label(window, text="Released")
     l5.grid(row=5, column=9)
-    l6 = Label(window, text="Quantity")
+    l6 = Label(window, text="Copies Available")
     l6.grid(row=6, column=9)
 
     # branchId_txt = StringVar()
@@ -260,7 +260,7 @@ def guiPy():
 
     b1 = ttk.Button(window, text="View All Albums",width=15, command=viewAlbum)
     b1.grid(row=1, column=0)
-    b2 = ttk.Button(window, text="Search Albums", width=15, command=searchBook)
+    b2 = ttk.Button(window, text="Search Albums", width=15, command=searchAlbum)
     b2.grid(row=2, column=0)
     b3 = ttk.Button(window, text="Add Album", width=15, command=addBook)
     b3.grid(row=3, column=0)

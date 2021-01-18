@@ -11,71 +11,10 @@ from datetime import timedelta, date,datetime
 def guiPy():
 
     "////////////////////////////////////////////////////////////////////////////////////"
-    #----------------------------------BOOK DETAILS---------------------------------
+    #----------------------------------CUSTOMER WINDOW---------------------------------
     "////////////////////////////////////////////////////////////////////////////////////"
 
-    def selectRow(Event):
-        global sid
-        index = list1.curselection()
-        sid = list1.get(index)
-        e1.delete(0, END)
-        e1.insert(END, sid[0])
-        e2.delete(0, END)
-        e2.insert(END, sid[1])
-        e3.delete(0, END)
-        e3.insert(END, sid[2])
-        e4.delete(0, END)
-        e4.insert(END, sid[3])
-        e5.delete(0, END)
-        e5.insert(END, sid[4])
-        e6.delete(0, END)
-        e6.insert(END, sid[6])
-        e0.delete(0, END)
-        e0.insert(END, sid[5])
-
-    def viewAlbum():
-            list1.delete(0, END)
-            for row in backend.viewAllAlbums():
-                list1.insert(END, row)
-
-    def searchAlbum():
-        list1.delete(0, END)
-        for row in backend.searchAlbumData(bookId_txt.get(),
-         title_txt.get(), author_txt.get(), year_txt.get()):
-            list1.insert(END, row)
-
-    def addBook():
-        backend.insert(branchId_txt.get(),bookId_txt.get(), title_txt.get(),
-        author_txt.get(),year_txt.get(), publisher_txt.get(),quantity_txt.get())
-        list1.delete(0, END)
-        list1.insert(END, (bookId_txt.get(), title_txt.get(),
-        author_txt.get(),year_txt.get(), publisher_txt.get(),quantity_txt.get()))
-        e1.delete(0, END)
-        e2.delete(0, END)
-        e3.delete(0, END)
-        e4.delete(0, END)
-        e5.delete(0, END)
-        e6.delete(0, END)
-
-    def deleteAlbum():
-        backend.deleteAlbumData(sid[0])
-        viewAlbum()
-        e1.delete(0, END)
-        e2.delete(0, END)
-        e3.delete(0, END)
-        e4.delete(0, END)
-        e5.delete(0, END)
-        e6.delete(0, END)
-
-    def updateAlbum():
-        backend.updateAlbumData(bookId_txt.get(), title_txt.get(), author_txt.get(),
-                       year_txt.get(), quantity_txt.get())
-        viewAlbum()
-
-    "////////////////////////////////////////////////////////////////////////////////////"
-    #----------------------------------BRANCH DETAIL---------------------------------
-    "////////////////////////////////////////////////////////////////////////////////////"
-
+    #Done
     def customerWindow():
 
         def selectRow2(Event):
@@ -138,9 +77,10 @@ def guiPy():
 
 
     "////////////////////////////////////////////////////////////////////////////////////"
-    #----------------------------------PUBLISHER DETAIL---------------------------------
+    #----------------------------------ARTIST WINDOW---------------------------------
     "////////////////////////////////////////////////////////////////////////////////////"
 
+    #Done
     def artistWindow():
 
         def selectRow1(Event):
@@ -199,6 +139,74 @@ def guiPy():
         pubwindow.mainloop()
 
     "////////////////////////////////////////////////////////////////////////////////////"
+    #----------------------------------BOOK WINDOW---------------------------------
+    "////////////////////////////////////////////////////////////////////////////////////"
+
+    #Done
+    def selectRow(Event):
+        global sid
+        index = list1.curselection()
+        sid = list1.get(index)
+        e1.delete(0, END)
+        e1.insert(END, sid[0])
+        e2.delete(0, END)
+        e2.insert(END, sid[1])
+        e3.delete(0, END)
+        e3.insert(END, sid[2])
+        e4.delete(0, END)
+        e4.insert(END, sid[3])
+        e5.delete(0, END)
+        e5.insert(END, sid[4])
+        e6.delete(0, END)
+        e6.insert(END, sid[6])
+        e0.delete(0, END)
+        e0.insert(END, sid[5])
+
+    #Done
+    def viewAlbum():
+            list1.delete(0, END)
+            for row in backend.viewAllAlbums():
+                list1.insert(END, row)
+
+    #Done
+    def searchAlbum():
+        list1.delete(0, END)
+        for row in backend.searchAlbumData(bookId_txt.get(),
+         title_txt.get(), author_txt.get(), year_txt.get()):
+            list1.insert(END, row)
+
+    def addBook():
+        backend.insert(branchId_txt.get(),bookId_txt.get(), title_txt.get(),
+        author_txt.get(),year_txt.get(), publisher_txt.get(),quantity_txt.get())
+        list1.delete(0, END)
+        list1.insert(END, (bookId_txt.get(), title_txt.get(),
+        author_txt.get(),year_txt.get(), publisher_txt.get(),quantity_txt.get()))
+        e1.delete(0, END)
+        e2.delete(0, END)
+        e3.delete(0, END)
+        e4.delete(0, END)
+        e5.delete(0, END)
+        e6.delete(0, END)
+
+    #Done
+    def deleteAlbum():
+        backend.deleteAlbumData(sid[0])
+        viewAlbum()
+        e1.delete(0, END)
+        e2.delete(0, END)
+        e3.delete(0, END)
+        e4.delete(0, END)
+        e5.delete(0, END)
+        e6.delete(0, END)
+
+    #Done
+    def updateAlbum():
+        backend.updateAlbumData(bookId_txt.get(), title_txt.get(), author_txt.get(),
+                       year_txt.get(), quantity_txt.get())
+        viewAlbum()
+
+
+    "////////////////////////////////////////////////////////////////////////////////////"
     #----------------------------------MAIN WINDOW---------------------------------
     "////////////////////////////////////////////////////////////////////////////////////"
 
@@ -227,30 +235,25 @@ def guiPy():
     # l4 = Label(window, text="Publisher")
     # l4.grid(row=4, column=9)
     l5 = Label(window, text="Released")
-    l5.grid(row=5, column=9)
+    l5.grid(row=4, column=9)
     l6 = Label(window, text="Copies Available")
     l6.grid(row=6, column=9)
 
-    # branchId_txt = StringVar()
-    # e0 = Entry(window, textvariable = branchId_txt, fg='red')
-    # e0.grid(row=0,column=10)
+
     bookId_txt = StringVar()
-    e1 = Entry(window, textvariable=bookId_txt, fg='blue')
+    e1 = Entry(window, textvariable=bookId_txt, fg='red')
     e1.grid(row=1, column=10)
     title_txt = StringVar()
-    e2 = Entry(window, textvariable=title_txt, fg='blue')
+    e2 = Entry(window, textvariable=title_txt, fg='red')
     e2.grid(row=2, column=10)
     author_txt = StringVar()
-    e3 = Entry(window, textvariable=author_txt, fg='blue')
+    e3 = Entry(window, textvariable=author_txt, fg='red')
     e3.grid(row=3, column=10)
-    # publisher_txt = StringVar()
-    # e4 = Entry(window, textvariable=publisher_txt, fg='blue')
-    # e4.grid(row=4, column=10)
     year_txt = StringVar()
-    e5 = Entry(window, textvariable=year_txt, fg='blue')
-    e5.grid(row=5, column=10)
+    e5 = Entry(window, textvariable=year_txt, fg='red')
+    e5.grid(row=4, column=10)
     quantity_txt = StringVar()
-    e6 = Entry(window, textvariable=quantity_txt, fg='blue')
+    e6 = Entry(window, textvariable=quantity_txt, fg='red')
     e6.grid(row=6, column=10)
 
     list1 = Listbox(window, height=10, width=45)
@@ -272,8 +275,12 @@ def guiPy():
     b5.grid(row=5, column=0)
     b6 = ttk.Button(window, text="Close", width=15, command=window.destroy)
     b6.grid(row=6, column=0)
-    "---------------------------------BOOK issue----------------------------------"
 
+    "////////////////////////////////////////////////////////////////////////////////////"
+    #----------------------------------ALBUM PURCHASE WINDOW---------------------------------
+    "////////////////////////////////////////////////////////////////////////////////////"
+
+    #Done
     def selectRow1(Event):
         global sidd
         index1 = list2.curselection()
@@ -286,13 +293,14 @@ def guiPy():
         e9.insert(END, sidd[1])
         e0.delete(0, END)
         e0.insert(END, sidd[3])
+
+    #Done
     def viewData():
         list2.delete(0, END)
-        for row in backend.viewData():
+        for row in backend.viewPurchaseData():
             list2.insert(END, row)
 
     def issueBook():
-
         if (len(branchId_txt.get()) == 0 ):
             root = Tk()
             root.withdraw()
@@ -334,55 +342,54 @@ def guiPy():
             e11.delete(0,END)
             e11.insert(END,diff.days * 5)
 
-    l7 = Label(window, text="Card Number")
-    l7.grid(row=9, column=8)
-    l8 = Label(window, text="Date Out")
-    l8.grid(row=10, column=8)
-    l9 = Label(window, text="Due Date")
-    l9.grid(row=11, column=8)
-    l10 = Label(window, text="Date In")
-    l10.grid(row=12, column=8)
-    l11 = Label(window, text="Fine")
-    l11.grid(row=13, column=8)
-
+    l7 = Label(window, text="Customer ID")
+    l7.grid(row=11, column=8)
+    l8 = Label(window, text="Puchase Date")
+    l8.grid(row=12, column=8)
+    # l9 = Label(window, text="Due Date")
+    # l9.grid(row=11, column=8)
+    # l10 = Label(window, text="Date In")
+    # l10.grid(row=12, column=8)
+    # l11 = Label(window, text="Fine")
+    # l11.grid(row=13, column=8)
 
 
     card_number = StringVar()
-    e7 = Entry(window, textvariable=card_number, fg='blue')
-    e7.grid(row=9, column=9)
+    e7 = Entry(window, textvariable=card_number, fg='red')
+    e7.grid(row=11, column=9)
     dateOut = StringVar()
-    e8 = Entry(window, textvariable=dateOut, fg='blue')
-    e8.grid(row=10, column=9)
-    dueDate = StringVar()
-    e9 = Entry(window, textvariable=dueDate, fg='blue')
-    e9.grid(row=11, column=9)
-    dateIn = StringVar()
-    e10 = Entry(window, textvariable=dateIn, fg='blue')
-    e10.grid(row=12, column=9)
-    fine = StringVar()
-    e11 = Entry(window, textvariable=fine, fg='blue')
-    e11.grid(row=13, column=9)
+    e8 = Entry(window, textvariable=dateOut, fg='red')
+    e8.grid(row=12, column=9)
+    # dueDate = StringVar()
+    # e9 = Entry(window, textvariable=dueDate, fg='red')
+    # e9.grid(row=11, column=9)
+    # dateIn = StringVar()
+    # e10 = Entry(window, textvariable=dateIn, fg='red')
+    # e10.grid(row=12, column=9)
+    # fine = StringVar()
+    # e11 = Entry(window, textvariable=fine, fg='red')
+    # e11.grid(row=13, column=9)
     e8.delete(0, END)
     e8.insert(END, date.today())
-    e9.delete(0, END)
-    e9.insert(END,date.today()+timedelta(days=15))
-    e10.delete(0, END)
-    e10.insert(END, date.today())
+    # e9.delete(0, END)
+    # e9.insert(END,date.today()+timedelta(days=15))
+    # e10.delete(0, END)
+    # e10.insert(END, date.today())
     list2 = Listbox(window,height=10, width=30)
     list2.grid(row=9, column=3, rowspan=6, columnspan=2)
 
     list2.bind('<<ListboxSelect>>', selectRow1)
 
-    b7 = ttk.Button(window, text="View Data", width=15, command=viewData)
+    b7 = ttk.Button(window, text="View Purchase Data", width=20, command=viewData)
     b7.grid(row=10, column=0)
-    b8 = ttk.Button(window, text="Issue Book", width=15, command=issueBook)
+    b8 = ttk.Button(window, text="Purchase Album", width=20, command=issueBook)
     b8.grid(row=11, column=0)
-    b9 = ttk.Button(window, text="Return Book", width=15, command=returnBook)
+    b9 = ttk.Button(window, text="Return Album", width=20, command=returnBook)
     b9.grid(row=12, column=0)
-    b9 = ttk.Button(window, text="Search", width=15, command=searchCard)
+    b9 = ttk.Button(window, text="Search", width=20, command=searchCard)
     b9.grid(row=13, column=0)
-    b9 = ttk.Button(window, text="Check", width=8, command=checkFine)
-    b9.grid(row=13, column=10)
+    # b9 = ttk.Button(window, text="Check", width=8, command=checkFine)
+    # b9.grid(row=13, column=10)
     window.mainloop()
 
 

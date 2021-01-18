@@ -96,7 +96,6 @@ def connect():
                            user="root", password="shalatan", database="music")
     mydb.close()
 
-
 #--------------------------------------Artist Details--------------------------------------
 
 # Done
@@ -165,7 +164,6 @@ def deleteCustomerData(id):
 
 "--------------------------------------add book details---------------------------------------"
 
-
 def insert(Branch_id,id, title, author, year, publisher,quantity):
 
     mydb = pymysql.connect(host="localhost",
@@ -231,15 +229,14 @@ def updateAlbumData(id, title, author, year, quantity):
     mydb.commit()
     mydb.close()
 
-
 "--------------------------------------BOOK ISSUE---------------------------------------"
 
-
-def viewData():
+#Done
+def viewPurchaseData():
     mydb = pymysql.connect(host="localhost",
                            user="root", password="shalatan", database="music")
     cur = mydb.cursor()
-    cur.execute("select * from BOOK_LENDING")
+    cur.execute("select * from purchase_data")
     rows = cur.fetchall()
     mydb.close()
     return rows

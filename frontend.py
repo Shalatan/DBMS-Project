@@ -297,47 +297,27 @@ def guiPy():
             list2.insert(END, row)
 
     def issueBook():
-        if (len(branchId_txt.get()) == 0 ):
-            root = Tk()
-            root.withdraw()
-            messagebox.showerror("Branch ID","BRANCH ID MISSING")
-            root.destroy()
-            root.mainloop()
-        else:
-            backend.insertIssue(dateOut.get(), dueDate.get(),
-                albumId_txt.get(),branchId_txt.get(),card_number.get())
+            backend.insertIssue(purchase_id.get(),dateOut.get(),albumId_txt.get(),card_number.get())
             list2.delete(0, END)
-            list2.insert(
-                END, (dateOut.get(), dueDate.get(),
-                albumId_txt.get(),branchId_txt.get(),card_number.get()))
-            updateIsBook()
+            list2.insert(END, (dateOut.get(),albumId_txt.get(),card_number.get()))
+            # updateIsBook()
 
-    def returnBook():
-        backend.deleteIssueBook(sidd[2], sidd[3],sidd[4])
-        viewData()
-        viewBook()
+    # def returnBook():
+    #     backend.deleteIssueBook(sidd[2], sidd[3],sidd[4])
+    #     viewData()
+    #     viewBook()
 
-    def updateIsBook():
-        backend.updateIssueBook(albumId_txt.get(),branchId_txt.get(),quantity_txt.get())
-        viewBook()
+    # def updateIsBook():
+    #     backend.updateIssueBook(albumId_txt.get(),branchId_txt.get(),quantity_txt.get())
+    #     viewBook()
 
     def searchCard():
         list2.delete(0,END)
         for rows in backend.searchCards(card_number.get()):
             list2.insert(END,rows)
 
-    def checkFine():
-        print(dueDate.get(),dateIn.get())
-        date1 = datetime.strptime(dueDate.get(), "%Y-%m-%d").date()
-        date2 = datetime.strptime(dateIn.get(), "%Y-%m-%d").date()
-        diff=date2-date1
-        if(diff.days<=0):
-            e11.delete(0,END)
-            e11.insert(END,"no fine")
-        else:
-            e11.delete(0,END)
-            e11.insert(END,diff.days * 5)
-
+    l7 = Label(window, text="Purchase ID")
+    l7.grid(row=10, column=8)
     l7 = Label(window, text="Customer ID")
     l7.grid(row=11, column=8)
     l8 = Label(window, text="Puchase Date")
@@ -349,10 +329,14 @@ def guiPy():
     # l11 = Label(window, text="Fine")
     # l11.grid(row=13, column=8)
 
+    purchase_id = StringVar()
+    e7 = Entry(window, textvariable=purchase_id, fg='red')
+    e7.grid(row=10, column=9)
 
     card_number = StringVar()
     e7 = Entry(window, textvariable=card_number, fg='red')
     e7.grid(row=11, column=9)
+
     dateOut = StringVar()
     e8 = Entry(window, textvariable=dateOut, fg='red')
     e8.grid(row=12, column=9)

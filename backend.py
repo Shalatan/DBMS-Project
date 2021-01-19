@@ -171,17 +171,7 @@ def insert(id, title, author, year):
     cur = mydb.cursor()
     insertBooks = "insert into album values('"+id+"','"+title+"','" + \
         author+"','" + year+"')"
-    # insertBookCopies= "insert into BOOK_COPIES values('"+str(quantity)+"','"+str(id)+"','"+ \
-    #     str(Branch_id)+"')"
-    # try:
     cur.execute(insertBooks)
-        # cur.execute(insertBookCopies)
-    # except pymysql.err.IntegrityError as e:
-    #     if(e.args[0]==1062):
-    #         errorMessage(1)
-    #     elif(e.args[0]==1452):
-    #         errorMessage(2)
-
     mydb.commit()
     mydb.close()
 
@@ -243,7 +233,7 @@ def viewData():
 
 def searchCards(cardNo):
     mydb = pymysql.connect(host="localhost",
-                           user="root", password="shalatan", database="MainLibraryDatabase")
+                           user="root", password="shalatan", database="music")
     cur = mydb.cursor()
     searchcard = ("select * from BOOK_LENDING where CARD_NO  = '"+cardNo+"'")
     cur.execute(searchcard)
@@ -252,13 +242,12 @@ def searchCards(cardNo):
     return row
 
 
-def insertIssue(dateo,ddate,bookId,branchId,cardNumber):
+def insertIssue(purchaseID,dateo,bookId,cardNumber):
 
     mydb = pymysql.connect(host="localhost",
-                           user="root", password="shalatan", database="MainLibraryDatabase")
+                           user="root", password="shalatan", database="music")
     cur = mydb.cursor()
-    insertdata = "insert into BOOK_LENDING values('" + \
-        str(dateo) + "','"+ddate+"','"+str(bookId)+"','"+str(branchId)+"','"+str(cardNumber)+"')"
+    insertdata = "insert into purchase_data values('"+str(purchaseID)+"','"+str(cardNumber)+"','"+str(bookId)+"','"+str(dateo)+"')"
     cur.execute(insertdata)
     mydb.commit()
     mydb.close()
@@ -266,7 +255,7 @@ def insertIssue(dateo,ddate,bookId,branchId,cardNumber):
 
 def updateIssueBook(bId,braId, quantity):
     mydb = pymysql.connect(host="localhost",
-                           user="root", password="shalatan", database="MainLibraryDatabase")
+                           user="root", password="shalatan", database="music")
     cur = mydb.cursor()
     updateBook = ("update BOOK_COPIES set NoOfCopies = '" +
                   str(int(quantity)-1)+"' where bookId='"+str(bId)+"' and branchID='"+str(braId)+"'")
@@ -277,7 +266,7 @@ def updateIssueBook(bId,braId, quantity):
 
 def deleteIssueBook(BId,BraId,cardNumber):
     mydb = pymysql.connect(host="localhost",
-                           user="root", password="shalatan", database="MainLibraryDatabase")
+                           user="root", password="shalatan", database="music")
     cur = mydb.cursor()
 
     # to obtain book quantity from books table

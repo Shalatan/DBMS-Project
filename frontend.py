@@ -14,55 +14,53 @@ def guiPy():
     #----------------------------------CUSTOMER WINDOW---------------------------------
     "////////////////////////////////////////////////////////////////////////////////////"
 
-    #Done
     def customerWindow():
 
         def selectRow2(Event):
-            global sid2
-            index = bList.curselection()
-            sid2 = bList.get(index)
+            global gVar
+            index = customerList.curselection()
+            gVar = customerList.get(index)
             be1.delete(0, END)
-            be1.insert(END, sid2[0])
+            be1.insert(END, gVar[0])
             be2.delete(0, END)
-            be2.insert(END, sid2[1])
+            be2.insert(END, gVar[1])
             be3.delete(0, END)
-            be3.insert(END, sid2[2])
+            be3.insert(END, gVar[2])
 
         def addCustomer():
-            backend.insertCustomer(branch_id.get(),name.get(),address.get())
-            bList.delete(0,END)
-            bList.insert(END,(branch_id.get(),name.get(),address.get()))
+            backend.insertCustomer(customer_id.get(),name.get(),address.get())
+            customerList.delete(0,END)
+            customerList.insert(END,(customer_id.get(),name.get(),address.get()))
 
         def viewCustomer():
-            bList.delete(0,END)
+            customerList.delete(0,END)
             for row in backend.viewCustomerData():
-                bList.insert(END,row)
+                customerList.insert(END,row)
 
         def deleteCustomer():
-            backend.deleteCustomerData(sid2[0])
+            backend.deleteCustomerData(gVar[0])
             viewCustomer()
 
         brawindow = Toplevel(window)
 
-
         l1 = Label(brawindow, text="Customer Id").grid(row=1,column=5)
-        l2 = Label(brawindow, text="Customer Name").grid(row=2,column=5)
-        l3 = Label(brawindow, text="Customer Phone").grid(row=3,column=5)
-
-        branch_id = StringVar()
-        be1 = Entry(brawindow,textvariable=branch_id)
+        customer_id = StringVar()
+        be1 = Entry(brawindow,textvariable=customer_id)
         be1.grid(row=1,column=6)
+
+        l2 = Label(brawindow, text="Customer Name").grid(row=2,column=5)
         name = StringVar()
         be2 = Entry(brawindow,textvariable=name)
         be2.grid(row=2,column=6)
+
+        l3 = Label(brawindow, text="Customer Phone").grid(row=3,column=5)
         address = StringVar()
         be3 = Entry(brawindow,textvariable=address)
         be3.grid(row=3,column=6)
 
-        bList = Listbox(brawindow, height=10, width=45)
-        bList.grid(row=1, column=2, rowspan=6, columnspan=2)
-
-        bList.bind('<<ListboxSelect>>', selectRow2)
+        customerList = Listbox(brawindow, height=10, width=45)
+        customerList.grid(row=1, column=2, rowspan=6, columnspan=2)
+        customerList.bind('<<ListboxSelect>>', selectRow2)
 
         b1 = ttk.Button(brawindow, text="View All Customers",width=17,command=viewCustomer)
         b1.grid(row=1, column=0)
@@ -75,57 +73,54 @@ def guiPy():
 
         brawindow.mainloop()
 
-
     "////////////////////////////////////////////////////////////////////////////////////"
     #----------------------------------ARTIST WINDOW---------------------------------
     "////////////////////////////////////////////////////////////////////////////////////"
 
-    #Done
     def artistWindow():
 
         def selectRow1(Event):
-            global sid1
-            index = pList.curselection()
-            sid1 = pList.get(index)
+            global gVar1
+            index = artistList.curselection()
+            gVar1 = artistList.get(index)
             ee1.delete(0, END)
-            ee1.insert(END, sid1[0])
+            ee1.insert(END, gVar1[0])
             ee2.delete(0, END)
-            ee2.insert(END, sid1[1])
+            ee2.insert(END, gVar1[1])
             ee3.delete(0, END)
-            ee3.insert(END, sid1[2])
+            ee3.insert(END, gVar1[2])
 
         def addArtist():
             backend.insertArtist(name.get(),number.get())
-            pList.delete(0,END)
-            pList.insert(END,(name.get(),number.get()))
+            artistList.delete(0,END)
+            artistList.insert(END,(name.get(),number.get()))
 
         def viewArtist():
-            pList.delete(0,END)
+            artistList.delete(0,END)
             for row in backend.viewArtistData():
-                pList.insert(END,row)
+                artistList.insert(END,row)
 
         def deleteArtist():
-            print(sid1[0])
-            backend.deleteArtist(sid1[0])
+            print(gVar1[0])
+            backend.deleteArtist(gVar1[0])
             viewArtist()
 
         pubwindow = Toplevel(window)
 
-
         l1 = Label(pubwindow, text="Artist Name").grid(row=1,column=5)
-        l2 = Label(pubwindow, text="Artist Phone Number").grid(row=2,column=5)
-
         name = StringVar()
         ee1 = Entry(pubwindow,textvariable=name)
         ee1.grid(row=1,column=6)
+
+        l2 = Label(pubwindow, text="Artist Phone Number").grid(row=2,column=5)
         number = StringVar()
         ee2 = Entry(pubwindow,textvariable=number)
         ee2.grid(row=2,column=6)
 
-        pList = Listbox(pubwindow, height=10, width=45)
-        pList.grid(row=1, column=2, rowspan=6, columnspan=2)
+        artistList = Listbox(pubwindow, height=10, width=45)
+        artistList.grid(row=1, column=2, rowspan=6, columnspan=2)
 
-        pList.bind('<<ListboxSelect>>', selectRow1)
+        artistList.bind('<<ListboxSelect>>', selectRow1)
 
         b1 = ttk.Button(pubwindow, text="View All Artists",width=17,command=viewArtist)
         b1.grid(row=1, column=0)
@@ -139,28 +134,28 @@ def guiPy():
         pubwindow.mainloop()
 
     "////////////////////////////////////////////////////////////////////////////////////"
-    #----------------------------------BOOK WINDOW---------------------------------
+    #----------------------------------ALBUM WINDOW---------------------------------
     "////////////////////////////////////////////////////////////////////////////////////"
 
     #Done
     def selectRow(Event):
-        global sid
+        global gVar2
         index = list1.curselection()
-        sid = list1.get(index)
+        gVar2 = list1.get(index)
         e1.delete(0, END)
-        e1.insert(END, sid[0])
+        e1.insert(END, gVar2[0])
         e2.delete(0, END)
-        e2.insert(END, sid[1])
+        e2.insert(END, gVar2[1])
         e3.delete(0, END)
-        e3.insert(END, sid[2])
+        e3.insert(END, gVar2[2])
         e4.delete(0, END)
-        e4.insert(END, sid[3])
+        e4.insert(END, gVar2[3])
         e5.delete(0, END)
-        e5.insert(END, sid[4])
+        e5.insert(END, gVar2[4])
         e6.delete(0, END)
-        e6.insert(END, sid[6])
+        e6.insert(END, gVar2[6])
         e0.delete(0, END)
-        e0.insert(END, sid[5])
+        e0.insert(END, gVar2[5])
 
     #Done
     def viewAlbum():
@@ -171,26 +166,24 @@ def guiPy():
     #Done
     def searchAlbum():
         list1.delete(0, END)
-        for row in backend.searchAlbumData(bookId_txt.get(),
+        for row in backend.searchAlbumData(albumId_txt.get(),
          title_txt.get(), author_txt.get(), year_txt.get()):
             list1.insert(END, row)
 
     def addBook():
-        backend.insert(branchId_txt.get(),bookId_txt.get(), title_txt.get(),
-        author_txt.get(),year_txt.get(), publisher_txt.get(),quantity_txt.get())
+        backend.insert(albumId_txt.get(), title_txt.get(),
+        author_txt.get(),year_txt.get())
         list1.delete(0, END)
-        list1.insert(END, (bookId_txt.get(), title_txt.get(),
-        author_txt.get(),year_txt.get(), publisher_txt.get(),quantity_txt.get()))
+        list1.insert(END, (albumId_txt.get(), title_txt.get(),
+        author_txt.get(),year_txt.get()))
         e1.delete(0, END)
         e2.delete(0, END)
         e3.delete(0, END)
         e4.delete(0, END)
-        e5.delete(0, END)
-        e6.delete(0, END)
 
     #Done
     def deleteAlbum():
-        backend.deleteAlbumData(sid[0])
+        backend.deleteAlbumData(gVar2[0])
         viewAlbum()
         e1.delete(0, END)
         e2.delete(0, END)
@@ -201,7 +194,7 @@ def guiPy():
 
     #Done
     def updateAlbum():
-        backend.updateAlbumData(bookId_txt.get(), title_txt.get(), author_txt.get(),
+        backend.updateAlbumData(albumId_txt.get(), title_txt.get(), author_txt.get(),
                        year_txt.get(), quantity_txt.get())
         viewAlbum()
 
@@ -224,7 +217,7 @@ def guiPy():
     # display the menu
     window.config(menu=menubar)
 
-    # l0 = Label(window,text="Branch_id")
+    # l0 = Label(window,text="customer_id")
     # l0.grid(row=0,column=9)
     l1 = Label(window, text="Album Id")
     l1.grid(row=1, column=9)
@@ -240,40 +233,43 @@ def guiPy():
     l6.grid(row=6, column=9)
 
 
-    bookId_txt = StringVar()
-    e1 = Entry(window, textvariable=bookId_txt, fg='red')
+    albumId_txt = StringVar()
+    e1 = Entry(window, textvariable=albumId_txt, fg='red')
     e1.grid(row=1, column=10)
+
     title_txt = StringVar()
     e2 = Entry(window, textvariable=title_txt, fg='red')
     e2.grid(row=2, column=10)
+
     author_txt = StringVar()
     e3 = Entry(window, textvariable=author_txt, fg='red')
     e3.grid(row=3, column=10)
+    
     year_txt = StringVar()
-    e5 = Entry(window, textvariable=year_txt, fg='red')
-    e5.grid(row=4, column=10)
-    quantity_txt = StringVar()
-    e6 = Entry(window, textvariable=quantity_txt, fg='red')
-    e6.grid(row=6, column=10)
+    e4 = Entry(window, textvariable=year_txt, fg='red')
+    e4.grid(row=4, column=10)
+    # quantity_txt = StringVar()
+    # e6 = Entry(window, textvariable=quantity_txt, fg='red')
+    # e6.grid(row=6, column=10)
 
     list1 = Listbox(window, height=10, width=45)
     list1.grid(row=1, column=3, rowspan=6, columnspan=6)
 
     list1.bind('<<ListboxSelect>>', selectRow)
 
-    b1 = ttk.Button(window, text="View All Albums",width=15, command=viewAlbum)
+    b1 = ttk.Button(window, text="View All Albums",width=20, command=viewAlbum)
     b1.grid(row=1, column=0)
-    b2 = ttk.Button(window, text="Search Albums", width=15, command=searchAlbum)
+    b2 = ttk.Button(window, text="Search Albums", width=20, command=searchAlbum)
     b2.grid(row=2, column=0)
-    b3 = ttk.Button(window, text="Add Album", width=15, command=addBook)
+    b3 = ttk.Button(window, text="Add Album", width=20, command=addBook)
     b3.grid(row=3, column=0)
     b4 = ttk.Button(window, text="Update Album",
-                    width=15, command=updateAlbum)
+                    width=20, command=updateAlbum)
     b4.grid(row=4, column=0)
     b5 = ttk.Button(window, text="Delete Album",
-                    width=15, command=deleteAlbum)
+                    width=20, command=deleteAlbum)
     b5.grid(row=5, column=0)
-    b6 = ttk.Button(window, text="Close", width=15, command=window.destroy)
+    b6 = ttk.Button(window, text="Close", width=20, command=window.destroy)
     b6.grid(row=6, column=0)
 
     "////////////////////////////////////////////////////////////////////////////////////"
@@ -297,7 +293,7 @@ def guiPy():
     #Done
     def viewData():
         list2.delete(0, END)
-        for row in backend.viewPurchaseData():
+        for row in backend.viewData():
             list2.insert(END, row)
 
     def issueBook():
@@ -309,11 +305,11 @@ def guiPy():
             root.mainloop()
         else:
             backend.insertIssue(dateOut.get(), dueDate.get(),
-                bookId_txt.get(),branchId_txt.get(),card_number.get())
+                albumId_txt.get(),branchId_txt.get(),card_number.get())
             list2.delete(0, END)
             list2.insert(
                 END, (dateOut.get(), dueDate.get(),
-                bookId_txt.get(),branchId_txt.get(),card_number.get()))
+                albumId_txt.get(),branchId_txt.get(),card_number.get()))
             updateIsBook()
 
     def returnBook():
@@ -322,7 +318,7 @@ def guiPy():
         viewBook()
 
     def updateIsBook():
-        backend.updateIssueBook(bookId_txt.get(),branchId_txt.get(),quantity_txt.get())
+        backend.updateIssueBook(albumId_txt.get(),branchId_txt.get(),quantity_txt.get())
         viewBook()
 
     def searchCard():

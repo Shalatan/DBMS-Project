@@ -170,7 +170,7 @@ def guiPy():
          title_txt.get(), author_txt.get(), year_txt.get()):
             list1.insert(END, row)
 
-    def addBook():
+    def addAlbum():
         backend.insert(albumId_txt.get(), title_txt.get(),
         author_txt.get(),year_txt.get())
         list1.delete(0, END)
@@ -195,7 +195,7 @@ def guiPy():
     #Done
     def updateAlbum():
         backend.updateAlbumData(albumId_txt.get(), title_txt.get(), author_txt.get(),
-                       year_txt.get(), quantity_txt.get())
+                       year_txt.get())
         viewAlbum()
 
 
@@ -223,14 +223,14 @@ def guiPy():
     l1.grid(row=1, column=9)
     l2 = Label(window, text="Album Name")
     l2.grid(row=2, column=9)
-    l3 = Label(window, text="Artist")
+    l3 = Label(window, text="Released Date")
     l3.grid(row=3, column=9)
     # l4 = Label(window, text="Publisher")
     # l4.grid(row=4, column=9)
-    l5 = Label(window, text="Released")
+    l5 = Label(window, text="Artist Name")
     l5.grid(row=4, column=9)
-    l6 = Label(window, text="Copies Available")
-    l6.grid(row=6, column=9)
+    # l6 = Label(window, text="Copies Available")
+    # l6.grid(row=6, column=9)
 
 
     albumId_txt = StringVar()
@@ -244,7 +244,7 @@ def guiPy():
     author_txt = StringVar()
     e3 = Entry(window, textvariable=author_txt, fg='red')
     e3.grid(row=3, column=10)
-    
+
     year_txt = StringVar()
     e4 = Entry(window, textvariable=year_txt, fg='red')
     e4.grid(row=4, column=10)
@@ -261,7 +261,7 @@ def guiPy():
     b1.grid(row=1, column=0)
     b2 = ttk.Button(window, text="Search Albums", width=20, command=searchAlbum)
     b2.grid(row=2, column=0)
-    b3 = ttk.Button(window, text="Add Album", width=20, command=addBook)
+    b3 = ttk.Button(window, text="Add Album", width=20, command=addAlbum)
     b3.grid(row=3, column=0)
     b4 = ttk.Button(window, text="Update Album",
                     width=20, command=updateAlbum)

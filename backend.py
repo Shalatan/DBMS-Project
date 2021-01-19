@@ -219,7 +219,7 @@ def deleteAlbumData(id):
     mydb.close()
 
 # Done
-def updateAlbumData(id, title, author, year, quantity):
+def updateAlbumData(id, title, author, year):
     mydb = pymysql.connect(host="localhost",
                            user="root", password="shalatan", database="music")
     cur = mydb.cursor()
